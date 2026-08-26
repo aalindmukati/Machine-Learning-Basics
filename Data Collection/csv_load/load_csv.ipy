@@ -29,4 +29,14 @@ df_excel_subset = pd.read_excel(
 #check sheet names 
 
 xls = pd.ExcelFile('csv_load/titanic.xlsx')
-print(xls.sheet_names)
+# print(xls.sheet_names)
+#--------------------------------------------------------------------
+# ? Parquet
+
+df_parquet = pd.read_parquet('csv_load/titanic.parquet')
+# print(df_parquet.head())
+df_parquet_subset = pd.read_parquet(
+    'csv_load/titanic.parquet',
+    columns = ['Survived','Name','Sex','Cabin']
+)
+print(df_parquet_subset.tail())
