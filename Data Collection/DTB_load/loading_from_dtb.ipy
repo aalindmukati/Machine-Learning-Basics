@@ -1,0 +1,15 @@
+import pandas as pd
+from sqlalchemy import create_engine
+
+connectstring = "postgresql://postgres:test@123@localhost:5432/ml_db"
+
+engine = create_engine(connectstring)
+
+#* Loading the Dataset From Postgrel SQL
+
+df = pd.read_sql(
+    sql ="SELECT * FROM datasets.diabetes_copy",
+    con=engine
+    )
+
+print(df.shape)
