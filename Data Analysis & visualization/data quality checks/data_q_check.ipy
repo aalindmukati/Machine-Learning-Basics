@@ -10,6 +10,15 @@ df = pd.read_csv('data quality checks/titanic.csv')
 
 x = df['PassengerId'] = np.arange(1, len(df) + 1) #? this arange give value from start to stop index (not including the last one) hence we write "+1"
 
-df["constant"] = 1
+df["constant"] = 1 #? bas ek column bana ta h jisme tum custom values add kr sakte ho
 
-print(df.head())
+df["Embarked_dirty"] = df['Embarked'].copy() #* Creates a diryt version of embarked
+
+sample_idx=df['Embarked_dirty'].dropna().sample(6, random_state=42).index #* dropna() removes the NaN values from the column and then we sample 6 random values from it
+#! THE ABOVE LINE IN WORDS IS "We are taking a random sample of 6 non-null values from the 'Embarked_dirty' column."
+
+df.loc[sample_idx[0:2], 'Embarked_dirty'] = df.loc[sample_idx[0:2], 'Embarked_dirty'].str.upper()
+df.loc[sample_idx[0:2], 'Embarked_dirty'] = df.loc[sample_idx[0:2], 'Embarked_dirty'].str.upper().apply(lambda x:f"{x}1") 
+df.loc[sample_idx[0:2], 'Embarked_dirty'] ="unknown"
+
+print(sample_idx)
