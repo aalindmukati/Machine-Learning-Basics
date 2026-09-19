@@ -6,4 +6,10 @@ pd.set_option('display.max_columns', 50)
 
 df = pd.read_csv('data quality checks/titanic.csv')
 
+# print(df.head(),df.shape)
+
+x = df['PassengerId'] = np.arange(1, len(df) + 1) #? this arange give value from start to stop index (not including the last one) hence we write "+1"
+
+df["constant"] = 1
+
 print(df.head())
