@@ -18,7 +18,8 @@ sample_idx=df['Embarked_dirty'].dropna().sample(6, random_state=42).index #* dro
 #! THE ABOVE LINE IN WORDS IS "We are taking a random sample of 6 non-null values from the 'Embarked_dirty' column."
 
 df.loc[sample_idx[0:2], 'Embarked_dirty'] = df.loc[sample_idx[0:2], 'Embarked_dirty'].str.upper()
-df.loc[sample_idx[2:4], 'Embarked_dirty'] = df.loc[sample_idx[0:2], 'Embarked_dirty'].str.strip.apply(lambda x:f"{x}1") 
+df.loc[sample_idx[2:4], 'Embarked_dirty'] = df.loc[sample_idx[0:2], 'Embarked_dirty'].str.strip().apply(lambda x:f"{x}1") 
 df.loc[sample_idx[4:6], 'Embarked_dirty'] ="unknown"
 
-print(sample_idx)
+z = df.iloc[281]
+print(z)
