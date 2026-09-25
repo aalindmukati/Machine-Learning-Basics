@@ -15,4 +15,11 @@ missing_analysis = pd.DataFrame({
     "missing_count": missing_count,
     'missing_percent': missing_percent}
 )
-print(missing_analysis)
+# print(missing_analysis)
+
+#? Duplicates
+
+duplicates_mask = df.duplicated()
+num_duplicates = duplicates_mask.sum()
+
+print("The number of duplicates are",num_duplicates)
