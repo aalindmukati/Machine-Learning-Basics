@@ -26,14 +26,15 @@ num_duplicates = duplicates_mask.sum()
 
 #* Data Type Validation
 
-expected_types = ({
+expected_types = {
     "survived":"int64",
     "pclass":"int64",
     "sex":"category",
     "fare":"float64"
-})
+}
 
-# print("Data Type Validation")
+print("Data Type Validation")
+
 for col, expected in expected_types.items():
     if col in df.columns:
         actual = df[col].dtype
