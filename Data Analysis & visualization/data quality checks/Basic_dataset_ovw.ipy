@@ -21,5 +21,20 @@ missing_analysis = pd.DataFrame({
 
 duplicates_mask = df.duplicated()
 num_duplicates = duplicates_mask.sum()
+#? if u want to drop the dupli {...no_dupli = df.drop_dupli()...}
+# print("The number of duplicates are",num_duplicates)
 
-print("The number of duplicates are",num_duplicates)
+#* Data Type Validation
+
+expected_types = ({
+    "survived":"int64",
+    "pclass":"int64",
+    "sex":"category",
+    "fare":"float64"
+})
+
+# print("Data Type Validation")
+for col, expected in expected_types.items():
+    if col in df.columns:
+        actual = df[col].dtype
+        print(f"{col}: actual={actual}, expected={expected}")
