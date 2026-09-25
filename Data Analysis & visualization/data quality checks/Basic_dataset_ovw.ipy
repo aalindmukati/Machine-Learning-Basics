@@ -46,5 +46,15 @@ for col, expected in expected_types.items():
 n_rows = len(df)
 nunique = df.nunique()
 
-constant_cols = nunique[nunique== 1].index.to_list()
+constant_cols = nunique[nunique== 3].index.to_list()
 print('Const columns',constant_cols)
+
+quasi_constant_cols = []
+
+for col in df.columns:
+    top_freq = df[col].value_counts(normalize=True,dropna=False).values[0]
+    if top_freq> 0.95 and col not in constant_cols:
+        quasi_constant_cols.append(col)
+
+print("Quasi Constant columns (top values ore than 95%)",quasi_constant_cols)
+print(df['Survived'].value_counts(normalize=True).values[0])
