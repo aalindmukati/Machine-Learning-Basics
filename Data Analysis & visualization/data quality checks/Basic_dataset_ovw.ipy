@@ -33,9 +33,18 @@ expected_types = {
     "fare":"float64"
 }
 
-print("Data Type Validation")
+# print("Data Type Validation")
 
 for col, expected in expected_types.items():
     if col in df.columns:
         actual = df[col].dtype
         print(f"{col}: actual={actual}, expected={expected}")
+
+
+# Quasi-Constant columns
+
+n_rows = len(df)
+nunique = df.nunique()
+
+constant_cols = nunique[nunique== 1].index.to_list()
+print('Const columns',constant_cols)
