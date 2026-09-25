@@ -4,4 +4,15 @@ import seaborn as sns
 
 df = pd.read_csv('data quality checks/titanic.csv')
 
-print(df.dtypes)
+# print(df.describe)
+
+#! Missing Values Analysis
+
+missing_count = df.isna().sum().sort_values(ascending=False)
+missing_percent = (df.isna().mean()*100).sort_values(ascending=False)
+
+missing_analysis = pd.DataFrame({
+    "missing_count": missing_count,
+    'missing_percent': missing_percent}
+)
+print(missing_analysis)
