@@ -72,8 +72,19 @@ for col in df.columns:
 
 #used to identify columns in a pandas DataFrame that behave like unique identifiers
 
-# High Null Columns 
+# High Null Columns (with a set number of missing values)
 
 high_null_threshold = 0.4  #means 40% or more are missing
 high_null_cols = missing_analysis[missing_analysis['missing_percent'] >= high_null_threshold * 100]
-print("columns with high missing percentage\n",high_null_cols)
+# print("columns with high missing percentage\n",high_null_cols)
+
+# High Zero columns(numeric)
+numeric_cols = df.select_dtypes(include=[np.number]).columns.to_list()
+zero_share = {}
+
+for col in numeric_cols:
+    zero_share[col] = (df[col]==0).mean()
+
+    zero_share_series = pd.Series(zero_share).sort_values(ascending=True)
+
+print(zero_share_series)
