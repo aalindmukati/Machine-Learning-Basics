@@ -68,4 +68,12 @@ for col in df.columns:
     if df[col].nunique(dropna=False) == n_rows:
         id_like_cols.append(col)
 
-print("Id like columns", id_like_cols)
+# print("Id like columns", id_like_cols)
+
+#used to identify columns in a pandas DataFrame that behave like unique identifiers
+
+# High Null Columns 
+
+high_null_threshold = 0.4  #means 40% or more are missing
+high_null_cols = missing_analysis[missing_analysis['missing_percent'] >= high_null_threshold * 100]
+print("columns with high missing percentage\n",high_null_cols)
